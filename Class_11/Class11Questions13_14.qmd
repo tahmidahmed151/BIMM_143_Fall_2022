@@ -1,0 +1,6 @@
+---
+title: "Class 11:Introduction to Genome Informatics Lab Homework Question 13 and 14"
+author: "Tahmid Ahmed"
+format: html
+---
+
