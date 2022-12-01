@@ -1,6 +1,6 @@
 ---
 title: "Class 8 Mini Project"
-format: pdf
+format: gfm
 ---
 
 Preparing the Data

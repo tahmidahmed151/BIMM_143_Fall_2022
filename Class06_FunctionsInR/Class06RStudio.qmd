@@ -1,6 +1,6 @@
 ---
 title: "Class06"
-format: pdf
+format: gfm
 ---
 
 - A **name**
