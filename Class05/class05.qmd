@@ -1,6 +1,6 @@
 ---
 title: "Class 05: Data Visualization with GGPLOT"
-format: pdf
+format: gfm
 author: "Tahmid Ahmed"
 ---
 
