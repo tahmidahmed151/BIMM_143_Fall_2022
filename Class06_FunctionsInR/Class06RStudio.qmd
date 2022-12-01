@@ -1,0 +1,147 @@
+---
+title: "Class06"
+format: pdf
+---
+
+- A **name**
+
+- A **body** (where work actually happens)
+You can add options to executable code like this 
+
+
+```{r}
+#example input vectors to start with
+student1 <- c(100, 100, 100, 100, 100, 100, 100, 90)
+student2 <- c(100, NA, 90, 90, 90, 90, 97, 80)
+student3 <- c(90, NA, NA, NA, NA, NA, NA, NA)
+```
+
+
+We can start by using the `mean()` function to calculate an average.
+
+```{r}
+mean(student1)
+```
+I found the `min()` function to find the minimum value in a vector
+```{r}
+min(student1)
+```
+Looking at the "See Also" section of the `min()` help page I found out about `which.min()`
+```{r}
+which.min(student1)
+```
+
+So I will combine the output of `which.min()` witht the minus index trcik to get the student scores without the lowest value
+```{r}
+mean( student1[-which.min(student1)])
+```
+
+Hmm... for student2 this gives NA
+```{r}
+mean( student2[-which.min(student2)])
+```
+
+I see there is an `na.rm=FALSE` by default argument to the `mean()` function. Will this help us?
+
+```{r}
+mean( student2[-which.min(student2)], na.rm=TRUE)
+```
+Trying out `is.na` to replace NA values with 0.
+```{r}
+student2[is.na(student2)] <- 0
+student2
+```
+Now calculating mean with NA being 0.
+```{r}
+student2[is.na(student2)] <- 0
+mean(student2[-which.min(student2)])
+```
+Doing the same for student3
+```{r}
+
+student3[is.na(student3)] <- 0
+student3
+mean(student3[-which.min(student3)])
+```
+
+Creating a function 
+```{r}
+x <- student1
+x[ is.na(x)] <- 0
+mean( x[ -which.min(x)])
+```
+
+I now have a working snippet of code that I have simplified to work with any student `x`
+```{r}
+x[ is.na(x)] <- 0
+mean( x[ -which.min(x)])
+```
+
+
+
+Creating function grade
+```{r}
+grade <- function(x) {
+  x[ is.na(x)] <- 0
+mean( x[ -which.min(x)])
+}
+```
+
+```{r}
+grade(student1)
+```
+
+New Student Gradebook
+```{r}
+GradeBook <- read.csv("https://bioboot.github.io/bggn213_S19/class-material/student_homework.csv", row.names = 1)
+head(GradeBook)
+```
+
+Attempting to use `grade()` on new dataset
+```{r}
+#grade(GradeBook)
+```
+Now trying to use `apply()`
+```{r}
+#1 because we are doing rows. It would be 2 if columns.
+Results <- apply(GradeBook, 1, grade)
+Results
+```
+
+
+
+> Q2 Finding highest scoring student
+
+```{r}
+Results[which.max(Results)]
+```
+
+
+> Q3 Finding hardest homework on students
+
+```{r}
+#First setting all NA to 0
+
+GradeBook[ is.na(GradeBook)] <- 0
+
+#Next using apply to find medians of columns since columns represent hw
+#using 2 since it represents columns
+HardestHWMedian <- apply(GradeBook, 2, median)
+HardestHWMedian[which.min(HardestHWMedian)]
+#using mean to see if theres a notable difference
+HardestHWMean <- apply(GradeBook, 2, mean)
+HardestHWMean[which.min(HardestHWMean)]
+```
+
+
+>Q4 Optional Extension: From your analysis of the gradebook, which homework was most predictive of overall score (i.e. highest correlation with average grade score)?
+
+```{r}
+Mask <- GradeBook
+Mask[ is.na(Mask)] <- 0
+
+cor(Mask, Results)
+apply(Mask, 2, cor, Results)
+
+```
+
