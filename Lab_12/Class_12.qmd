@@ -1,7 +1,7 @@
 ---
 title: "Lab 12: Transcriptomics and the analysis of RNA-Seq data"
 author: "Tahmid Ahmed"
-format: pdf
+format: gfm
 ---
 
 

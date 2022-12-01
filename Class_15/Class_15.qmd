@@ -1,7 +1,7 @@
 ---
 title: "Class 15"
 author: "Tahmid Ahmed"
-format: html
+format: gfm
 ---
 #bioinf_tahmidahmed
 #AWS: i-0e2b564f44d50b91a
@@ -14,9 +14,7 @@ Using RStudio online (or locally) to read your output
 b <- read.table(file = "mm-second.x.zebrafish.tsv", col.names = c("qseqid", "sseqid", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore"))
 ```
 
-```{r}
-b
-```
+
 
 ```{r}
 hist(b$bitscore, 30)

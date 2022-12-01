@@ -1,7 +1,7 @@
 ---
 title: "Class 19: Mini Project: Investigating Pertussis Resurgence"
 author: "Tahmid Ahmed"
-format: pdf
+format: gfm
 ---
 > Q1. With the help of the R “addin” package datapasta assign the CDC pertussis case number data to a data frame called cdc and use ggplot to make a plot of cases numbers over time.
 
